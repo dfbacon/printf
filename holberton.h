@@ -9,7 +9,7 @@
 typedef struct print_format_t
 {
 	char *s;
-	void(*f)();
+	int(*f)();
 }print_format;
 
 int _abs(int i);

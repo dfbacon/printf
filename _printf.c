@@ -35,7 +35,7 @@ int _printf(const char *format, ...)
 			if (format[i] == '%' && format [i + 1] == '%')
 				_putchar('%');
 			if (format [i] == '%' &&
-			    format [i + 1] == *(switchf[n].s))
+			    format [i + 1] == *(switchf[n]).s)
 			{
 				temp = switchf[n].f(args);
 				size += temp;
