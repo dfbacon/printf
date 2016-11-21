@@ -12,8 +12,8 @@ int _putchar(char c)
 }
 
 /**
- * _printstring - print string using _putchar
- * @string: string to print
+ * _printchar - print a char
+ * @args: string to print
  *
  * Return: 1 or - 1
  */
@@ -30,37 +30,20 @@ int _printchar(va_list args)
  * _strlen - find length of string
  * @s: pointer to  string
  *
- * Return: length of s
+ * Return: length of str
  */
-int _strlen(char *s)
+int _printstr(va_list args)
 {
-	int l;
-
-	l = 0;
-	while (*(s++) != '\0')
-		l++;
-	return (l);
-}
-
-/**
- * _strcat - concatenate two strings
- * @dest: base string
- * @src: string to be added
- *
- * Return: char
- */
-char *_strcat(char *dest, char *src)
-{
-	int i, n;
+	char *tmp;
+	int i;
 
 	i = 0;
-	while (dest[i] != '\0')
-		i++;
-	for (n = 0; src[n] != '\0'; n++)
+	tmp = va_arg(args, char *);
+	while (*tmp != 0)
 	{
-		dest[i] = src[n];
+		_putchar(*tmp);
+		tmp++;
 		i++;
 	}
-	dest[i] = src[n];
-	return (dest);
+	return (i);
 }
