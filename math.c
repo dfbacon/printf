@@ -18,24 +18,41 @@ int _abs(int i)
 }
 
 /**
- * itoa - convert integer to string
- * @num: integer to convert
- * @s: array of chars
+ * _printnum - print integer
+ * @args: int location
+ * @buffer: original string to %
  *
- * Return: int
+ * Retrun: void
  */
-int itoa(int num, char s[])
+int _printnum(va_list args)
 {
-	int i;
+	int i, j, k, value;
+	int num[10];
 
-	i = 0;
-	if (num / 10 != 0)
-		i = itoa((num / 10), s);
-	else if (num < 0)
-		s[i++] = '-';
-	/* make sure i is positive */
-	s[i++] = _abs(num % 10) + '0';
-	s[i] = '\0';
-
+	value = va_arg(args, int);
+	i = j = k = 0;
+	/* if value is negative */
+	if (value < 0)
+	{
+		value = value * -1;
+		_putchar('-');
+		i++;
+	}
+	/* loop through num */
+	for (j = 0; j < 10; j++)
+	{
+		/* changing num[j] to last digit of value */
+		num[j] = value % 10;
+		value = value / 10;
+		if (value != 0)
+			k++;
+	}
+	while (k >= 0)
+	{
+		/* print all characters */
+		_putchar(num[k] + '0');
+		k--;
+		i++;
+	}
 	return (i);
 }

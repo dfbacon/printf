@@ -6,7 +6,7 @@
  * @s: format
  * @f: function
  */
-typedef struct switchformat
+typedef struct switchf_t
 {
 	char *s;
 	void(*f)();
