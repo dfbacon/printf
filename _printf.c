@@ -14,12 +14,13 @@ int _printf(const char *format, ...)
 {
 	va_list args;
 	int i, n, t, size, formats, temp;
-	switchf_t switchf[] = {
-		{"i", _printnum}, {"c", _printchar}, {"s", _printstr},
-		{"d", _printnum}
-
+	print_format switchf[] = {
+		{"i", _printnum},
+		{"c", _printchar},
+		{"s", _printstr},
+		{"d", _printnum},
 	};
-	formats = sizeof(switchf) / sizeof(switchf_t);
+	formats = sizeof(switchf) / sizeof(print_format);
 	if (formats == NULL)
 		return (0);
 	va_start(args, format);

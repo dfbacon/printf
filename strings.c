@@ -1,3 +1,4 @@
+#include <stdarg.h>
 #include <unistd.h>
 
 /**
@@ -13,9 +14,9 @@ int _putchar(char c)
 
 /**
  * _printchar - print a char
- * @args: string to print
+ * @args: char to print
  *
- * Return: 1 or - 1
+ * Return: 1
  */
 int _printchar(va_list args)
 {
@@ -27,8 +28,8 @@ int _printchar(va_list args)
 }
 
 /**
- * _strlen - find length of string
- * @s: pointer to  string
+ * _printstr - print a string
+ * @args: string to print
  *
  * Return: length of str
  */
