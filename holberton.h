@@ -1,6 +1,16 @@
 #ifndef HOLBERTON
 #define HOLBERTON
 #include <stdarg.h>
+/**
+ * struct switchormat - structure
+ * @s: format
+ * @f: function
+ */
+typedef struct switchformat
+{
+	char *s;
+	void(*f)();
+}siwtchf;
 
 char *string_app(char *base, char *str);
 char *_strcat(char *dest, char *src);

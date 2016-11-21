@@ -15,7 +15,11 @@ int _printf(const char *format, ...)
 	va_list args;
 	int i, n, temp;
 	char *buffer;
-
+	switchf switchf_t[] = {
+		{"i", _printnum},
+		{"c", _printchar},
+		{}
+	}
 	/* initialize buffer */
 	buffer = _calloc(1, 1024);
 	buffer[0] = '\0';
@@ -41,9 +45,14 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
-			temp = switchf(format, buffer, i, n, args);
-			i = temp;
-			n = _strlen(buffer);
+			while (temp > 3)
+			{
+				if (*switchf_t[temp].s == buffer[n])
+				{
+					switchf_t[temp].f(args, buffer);
+				}
+				temp++;
+			}
 		}
 	}
 	va_end(args);
