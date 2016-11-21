@@ -13,53 +13,42 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i, n, temp;
-	char *buffer;
-	switchf switchf_t[] = {
+	int i, n, t, size, formats, temp;
+	switchf_t switchf[] = {
 		{"i", _printnum},
 		{"c", _printchar},
 		{}
-	}
-	/* initialize buffer */
-	buffer = _calloc(1, 1024);
-	buffer[0] = '\0';
-
+	};
+	formats = sizeof(switchf) / sizeof(switchf_t);
+	if (formats == NULL)
+		return (0);
 	va_start(args, format);
-
 	/* loop through format */
-	n = i = temp = 0;
+	n = i = size = 0;
 	while (format[i])
 	{
+		t = 1;
 		/* add characters to buffer */
-		while (format[i] && format[i] != '%')
+		while (n < formats)
 		{
-			buffer[n] = format[i];
-			i++;
+			if (format[i] == '%' && format [i + 1] == '%')
+				_putchar('%');
+			if (format [i] == '%' &&
+			    format [i + 1] == *(switchf[n].s))
+			{
+				temp = switchf[n].f(args);
+				size += temp;
+				t = 0;
+			}
 			n++;
 		}
-
-		/* add \0 to end */
-		buffer[n] = '\0';
-
-		/* convert '%' */
-		if (format[i] == '%')
+		if (t != 0)
 		{
-			i++;
-			while (temp > 3)
-			{
-				if (*switchf_t[temp].s == buffer[n])
-				{
-					switchf_t[temp].f(args, buffer);
-				}
-				temp++;
-			}
+			write(1, &format[i], 1);
+			size++;
 		}
+		i++;
 	}
 	va_end(args);
-
-	/* print buffer */
-	/* _printstring(buffer); */
-	write(1, buffer, 1024);
-	free(buffer);
-	return (n);
+	return (size);
 }
