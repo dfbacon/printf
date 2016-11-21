@@ -90,7 +90,7 @@ int _printf(const char *format, ...)
 	char *buffer;
 
 	/* initialize buffer */
-	buffer = calloc(1, 1024);
+	buffer = _calloc(1, 1024);
 	buffer[0] = '\0';
 
 	va_start(args, format);
