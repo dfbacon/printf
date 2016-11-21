@@ -21,8 +21,8 @@ int _printf(const char *format, ...)
 		{"d", _printnum},
 	};
 	formats = sizeof(switchf) / sizeof(print_format);
-	if (formats == NULL)
-		return (0);
+	/* if (formats == NULL)
+	   return (0); */
 	va_start(args, format);
 	/* loop through format */
 	n = i = size = 0;
@@ -32,10 +32,10 @@ int _printf(const char *format, ...)
 		/* add characters to buffer */
 		while (n < formats)
 		{
-			if (format[i] == '%' && format [i + 1] == '%')
+			if (format[i] == '%' && format[i + 1] == '%')
 				_putchar('%');
-			if (format [i] == '%' &&
-			    format [i + 1] == *(switchf[n]).s)
+			if (format[i] == '%' &&
+			    format[i + 1] == *(switchf[n]).s)
 			{
 				temp = switchf[n].f(args);
 				size += temp;
