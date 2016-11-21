@@ -17,17 +17,12 @@ int _putchar(char c)
  *
  * Return: 1 or - 1
  */
-int _printstring(char *string)
+int _printchar(va_list args)
 {
-	int i;
+	char *p;
 
-	i = 0;
-	while (string[i])
-	{
-		_putchar(string[i]);
-		i++;
-	}
-	_putchar('\0');
+	p = va_arg(args, char*);
+	_putchar(*p);
 	return (1);
 }
 
