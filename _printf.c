@@ -21,34 +21,32 @@ int _printf(const char *format, ...)
 		{"d", _printnum},
 	};
 	formats = sizeof(switchf) / sizeof(print_format);
-	if (formats == NULL)
+	if (format == NULL)
 		return (0);
 	va_start(args, format);
 	/* loop through format */
-	n = i = size = 0;
-	while (format[i])
+	size = temp = 0;
+	for (i = 0; format[i] != '\0'; i++)
 	{
 		t = 1;
 		/* add characters to buffer */
-		while (n < formats)
+		for (n = 0; n < formats; n++)
 		{
-			if (format[i] == '%' && format [i + 1] == '%')
-				_putchar('%');
 			if (format [i] == '%' &&
 			    format [i + 1] == *(switchf[n]).s)
 			{
 				temp = switchf[n].f(args);
 				size += temp;
 				t = 0;
+				i++;
+				break;
 			}
-			n++;
 		}
 		if (t != 0)
 		{
 			write(1, &format[i], 1);
 			size++;
 		}
-		i++;
 	}
 	va_end(args);
 	return (size);
