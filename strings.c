@@ -47,7 +47,7 @@ int _strlen(char *s)
 }
 
 /**
- * _strncopy - copy @n bytes of @src to @dest
+ * _strncpy - copy @n bytes of @src to @dest
  * @dest: pointer to destination string
  * @src: pointer to source string
  * @n: bytes to copy
