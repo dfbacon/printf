@@ -45,6 +45,8 @@ int switchf(const char *f, char *b, int i, int n,
 	case 'd':
 		i = num_app(b, va_arg(args, int), i);
 		break;
+	case 'r':
+		/* i = revstr */
 	default:
 		b[n] = '%';
 		b[n + 1] = '\0';
