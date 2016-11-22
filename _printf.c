@@ -13,40 +13,37 @@
 int _printf(const char *format, ...)
 {
 	va_list args;
-	int i, n, t, size, formats, temp;
+	char buffer[1024], temp;
+	int i, n, t, size, formats;
 	print_format switchf[] = {
 		{"i", _printnum},
 		{"c", _printchar},
 		{"s", _printstr},
 		{"d", _printnum},
 	};
+	size = t = 0;
+	temp = malloc(sizeof(char));
+	if (temp == NULL)
+		return (size);
 	formats = sizeof(switchf) / sizeof(print_format);
-	if (format == NULL)
-		return (0);
 	va_start(args, format);
 	/* loop through format */
-	size = temp = 0;
 	for (i = 0; format[i] != '\0'; i++)
 	{
-		t = 1;
-		/* add characters to buffer */
-		for (n = 0; n < formats; n++)
+		n = 0;
+		while (format[i] != '%')
 		{
-			if (format [i] == '%' &&
-			    format [i + 1] == *(switchf[n]).s)
-			{
-				temp = switchf[n].f(args);
-				size += temp;
-				t = 0;
-				i++;
-				break;
-			}
-		}
-		if (t != 0)
-		{
+			buffer[n] = format[i];
 			write(1, &format[i], 1);
-			size++;
+			if (format[i] == '%')
+			{
+				i++;
+				t = switchf[n].f(args, buffer);
+				size += t;
+			}
+			n++;
 		}
+		size++;
 	}
 	va_end(args);
 	return (size);

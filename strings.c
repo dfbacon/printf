@@ -15,25 +15,31 @@ int _putchar(char c)
 /**
  * _printchar - print a char
  * @args: char to print
+ * @b: pointer to buffer
  *
  * Return: 1
  */
-int _printchar(va_list args)
+int _printchar(va_list args, char *b)
 {
 	char *p;
 
-	p = va_arg(args, char*);
+	p = malloc(sizeof(*p));
+	*p = (char)va_arg(args, int);
+	if (p == NULL)
+		return (0);
 	_putchar(*p);
+	free(p);
 	return (1);
 }
 
 /**
  * _printstr - print a string
  * @args: string to print
+ * @b: pointer to buffer
  *
  * Return: length of str
  */
-int _printstr(va_list args)
+int _printstr(va_list args, char *b)
 {
 	char *tmp;
 	int i;

@@ -25,7 +25,7 @@ int _abs(int i)
  *
  * Retrun: void
  */
-int _printnum(va_list args)
+int _printnum(va_list args, char *b)
 {
 	int i, j, k, value;
 	int num[10];
