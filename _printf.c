@@ -1,0 +1,92 @@
+#include "holberton.h"
+
+/**
+ * string_app - append two strings
+ * @base: initial string
+ * @str: string to add
+ * @location: position in format (i.e format[location])
+ *
+ * Return: pointer to appended base
+ */
+int string_app(char *base, char *str, int location)
+{
+	if (str == NULL)
+	{
+		_strcat(base, "(null)");
+		return (location + 1);
+	}
+	else
+	{
+		_strcat(base, str);
+		return (location + 1);
+	}
+}
+
+/**
+ * num_app - append string with converted number
+ * @base: initial string
+ * @num: number to be converted and added
+ * @location: location in format (i.e. format[location])
+ *
+ * Return: pointer to appended base
+ */
+int num_app(char *base, int num, int location)
+{
+	char temp[100];
+
+	/* convert number to string */
+	itoa(num, temp);
+	string_app(base, temp, 0);
+	return (location + 1);
+}
+
+/**
+ * _printf - replicate the printf function
+ * @format: character string
+ *
+ * Return: number of characters printed (not including '\0')
+ */
+int _printf(const char *format, ...)
+{
+	va_list args;
+	int i, n, temp, size;
+	char buffer[1024];
+
+	if (format == NULL)
+		return (0);
+/*	buffer[0] = '\0'; */
+	size = 0;
+	va_start(args, format);
+	/* loop through format */
+	i = n = temp = 0;
+	while (format[i])
+	{
+		/* add characters to buffer */
+		while (format[i] && format[i] != '%')
+		{
+			if (i > 1022)
+			{
+				_printstring(buffer);
+				n = 0;
+				buffer[n + 1] = '\0';
+			}
+			buffer[n] = format[i];
+			i++;
+			n++;
+		}
+		/* add \0 to end */
+		buffer[n] = '\0';
+		/* convert '%' */
+		if (format[i] == '%')
+		{
+			i++;
+			temp = switchf(format, buffer, i, n, args, &size);
+			i = temp;
+		}
+		n = _strlen(buffer);
+	}
+	va_end(args);
+	/* print buffer */
+	_printstring(buffer);
+	return (size + n);
+}
