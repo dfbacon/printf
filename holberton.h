@@ -2,7 +2,7 @@
 #define HOLBERTON
 #include <stdarg.h>
 #include <stdlib.h>
-#include <string.h>
+#include <unistd.h>
 
 /* string functions */
 int _strlen(char *s);
