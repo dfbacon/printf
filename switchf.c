@@ -14,6 +14,7 @@
 int switchf(const char *f, char *b, int i, int n,
 	    va_list args, int *size)
 {
+	/* possible edge case if args == NULL */
 	switch (f[i])
 	{
 	case '%':
