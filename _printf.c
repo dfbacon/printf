@@ -53,6 +53,9 @@ int _printf(const char *format, ...)
 	char buffer[1024];
 
 	size = 0;
+/* testing for NULL */
+	if (format == NULL)
+		return(size);
 	va_start(args, format);
 	i = n = temp = 0;
 	while (format[i])
