@@ -61,7 +61,9 @@ int _printf(const char *format, ...)
 		{
 			if (i > 1022)
 			{
+				buffer[n] = '\0';
 				_printstring(buffer);
+				size += n;
 				n = 0;
 				buffer[n + 1] = '\0';
 			}
