@@ -51,8 +51,8 @@ int _printf(const char *format, ...)
 	int i, n, temp, size;
 	char buffer[1024];
 
-/*	if (format == NULL) */
-/*		return (0); */
+	if (format == NULL)
+		return (0);
 	size = 0;
 	va_start(args, format);
 	i = n = temp = 0;
