@@ -17,8 +17,7 @@ int num_app(char *base, int num, int location);
 int _abs(int i);
 int itoa(int num, char s[]);
 
-/* switch function */
-int switchf(const char *format, char *buffer, int i, int n, va_list args, int *size);
+int switchf(const char *f, char *b, int i, int n, va_list args, int *size);
 
 /* memory functions */
 void *_calloc(unsigned int nmemb, unsigned int size);
