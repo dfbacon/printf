@@ -1,22 +1,27 @@
 .TH man 3 "20 November 2016" "0.32" "_printf man page"
 .SH NAME
-.B _printf - replicate the printf function
+_printf - replicate the printf function
 .SH SYNOPSIS
-#include<stdarg.h>
-int _printf(const char *format, ...);
+.B #include<stdarg.h>
+.LP
+.B int _printf(const char *
+.I format
+.B , ...);
 .SH DESCRIPTION
-The function _printf() produces output according to a
+The function
+.B _printf()
+produces output according to a
 .I format
 as described below.  The function
-.B_printf()
+.B _printf()
 writes output to
 .I stdout
 , the standard output stream.
 .LP
-.B Return Value
+.SH Return Value
 Upon successful return, this function returns the number of characters printed.
 .LP
-.B Format of the format string
+.SH Format of the format string
 The format string is a character string, beginning and ending in its initial shift state, if any.  The format string is composed of zero or more directives: ordinary characters (not
 .B %
 ), which are copied unchanged to the output stream; and conversion specifications, each of which results in fetching zero or more subsequent arguments.  Each conversion specification is introduced by the character 
@@ -24,7 +29,7 @@ The format string is a character string, beginning and ending in its initial shi
 , and ends with a
 .I conversion specifier.
 .LP
-.B The converstion specifier
+.SH The converstion specifier
 A character that specifies the type of conversion to be applied. The conversion specifiers and their meanings are:
 .LP
 .B d, i
@@ -72,11 +77,12 @@ If no
 modifier is present: The const char * argument is expected to be a pointer to an array of character type (pointer to a string). Characters from the array are written up to (but not including) a terminating null byte ('\0'); if a precision is specified, no more than the number specified are written. If a precision is given, no null byte need be present; if the precision is not specified, or is greater than the size of the array, the array must contain a terminating null byte.
 .LP
 .B %
+.LP
 A '%' is written. No argument is converted. The complete conversion specification is '%%'.
 .LP
 .SH SEE ALSO
 .I printf
 .SH BUGS
-No known bugs.
+Call Orkin.
 .SH AUTHOR
 Daniel Bacon and Ntuj Vang

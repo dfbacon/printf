@@ -32,7 +32,7 @@ int string_app(char *base, char *str, int location)
  */
 int num_app(char *base, int num, int location)
 {
-	char temp[1024];
+	char temp[100];
 
 	/* convert number to string */
 	itoa(num, temp);
@@ -75,6 +75,8 @@ int _printf(const char *format, ...)
 		if (format[i] == '%')
 		{
 			i++;
+			while (format[i] && format[i] == ' ')
+				i++;
 			temp = switchf(format, buffer, i, n, args, &size);
 			i = temp;
 		}

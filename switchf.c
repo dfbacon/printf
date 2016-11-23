@@ -14,11 +14,10 @@
 int switchf(const char *f, char *b, int i, int n,
 	    va_list args, int *size)
 {
-	/* possible edge case if args == NULL */
 	switch (f[i])
 	{
 	case '%':
-		b[n] = '%';
+		b[n] = f[i];
 		b[n + 1] = '\0';
 		i++;
 		break;
@@ -46,8 +45,6 @@ int switchf(const char *f, char *b, int i, int n,
 	case 'd':
 		i = num_app(b, va_arg(args, int), i);
 		break;
-	case 'r':
-		/* i = revstr */
 	default:
 		b[n] = '%';
 		b[n + 1] = '\0';
